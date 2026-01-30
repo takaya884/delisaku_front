@@ -27,6 +27,7 @@ export const IngredientForm: React.FC<IngredientFormProps> = ({
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [imageLoadError, setImageLoadError] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -40,10 +41,10 @@ export const IngredientForm: React.FC<IngredientFormProps> = ({
     if (!formData.unit.trim()) {
       newErrors.unit = '単位は必須です';
     }
-    if (formData.packageQuantity <= 0) {
+    if (isNaN(formData.packageQuantity) || formData.packageQuantity <= 0) {
       newErrors.packageQuantity = '入数は1以上を入力してください';
     }
-    if (formData.purchasePrice < 0) {
+    if (isNaN(formData.purchasePrice) || formData.purchasePrice < 0) {
       newErrors.purchasePrice = '仕入価格は0以上を入力してください';
     }
     if (formData.orderUrl && !isValidUrl(formData.orderUrl)) {
@@ -72,6 +73,11 @@ export const IngredientForm: React.FC<IngredientFormProps> = ({
       ...prev,
       [name]: type === 'number' ? parseFloat(value) || 0 : value,
     }));
+    
+    // 画像URLが変更されたらエラー状態をリセット
+    if (name === 'imageUrl') {
+      setImageLoadError(false);
+    }
     
     // エラーをクリア
     if (errors[name]) {
@@ -222,14 +228,12 @@ export const IngredientForm: React.FC<IngredientFormProps> = ({
           {errors.imageUrl && (
             <span className="error-message">{errors.imageUrl}</span>
           )}
-          {formData.imageUrl && !errors.imageUrl && (
+          {formData.imageUrl && !errors.imageUrl && !imageLoadError && (
             <div className="image-preview">
               <img 
                 src={formData.imageUrl} 
                 alt="プレビュー" 
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
+                onError={() => setImageLoadError(true)}
               />
             </div>
           )}

@@ -23,7 +23,7 @@ export default defineConfig({
   /* 全テスト共通の設定 */
   use: {
     /* ベースURL */
-    baseURL: 'http://localhost:5173',
+    baseURL: 'http://127.0.0.1:3000',
     /* 失敗時のトレース取得 */
     trace: 'on-first-retry',
     /* スクリーンショットの設定 */
@@ -51,7 +51,7 @@ export default defineConfig({
   /* テスト開始前に開発サーバーを起動 */
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:5173',
+    url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

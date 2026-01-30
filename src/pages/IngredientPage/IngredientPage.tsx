@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { IngredientForm } from '../../components/IngredientForm';
 import { Ingredient } from '../../types';
 import './IngredientPage.css';
@@ -11,6 +11,16 @@ export const IngredientPage: React.FC<IngredientPageProps> = ({ onSave }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [registeredIngredients, setRegisteredIngredients] = useState<Ingredient[]>([]);
+  const timeoutRef = useRef<number | null>(null);
+
+  // コンポーネントアンマウント時にタイムアウトをクリア
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = async (data: Omit<Ingredient, 'id'>) => {
     setIsSubmitting(true);
@@ -33,8 +43,13 @@ export const IngredientPage: React.FC<IngredientPageProps> = ({ onSave }) => {
     setSuccessMessage(`「${data.name}」を登録しました`);
     setIsSubmitting(false);
 
+    // 既存のタイムアウトをクリア
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    
     // 成功メッセージを数秒後に消す
-    setTimeout(() => setSuccessMessage(''), 3000);
+    timeoutRef.current = window.setTimeout(() => setSuccessMessage(''), 3000);
   };
 
   return (

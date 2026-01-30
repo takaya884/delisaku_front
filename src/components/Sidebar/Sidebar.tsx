@@ -21,10 +21,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggle,
   currentPath = '',
 }) => {
+  const handleOverlayKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+      e.preventDefault();
+      onToggle();
+    }
+  };
+
   return (
     <>
       {/* オーバーレイ（モバイル用） */}
-      {isOpen && <div className="sidebar-overlay" onClick={onToggle} />}
+      {isOpen && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={onToggle}
+          onKeyDown={handleOverlayKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label="サイドバーを閉じる"
+        />
+      )}
       
       <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
         <button
@@ -37,18 +53,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </span>
         </button>
         
-        <nav className="sidebar-nav">
-          {items.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              className={`sidebar-item ${currentPath === item.href ? 'active' : ''}`}
-              title={item.label}
-            >
-              {item.icon && <span className="sidebar-icon">{item.icon}</span>}
-              <span className="sidebar-label">{item.label}</span>
-            </a>
-          ))}
+        <nav className="sidebar-nav" aria-label="メインナビゲーション">
+          {items.map((item) => {
+            const isActive = currentPath === item.href;
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                className={`sidebar-item ${isActive ? 'active' : ''}`}
+                title={item.label}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.icon && <span className="sidebar-icon" aria-hidden="true">{item.icon}</span>}
+                <span className="sidebar-label">{item.label}</span>
+              </a>
+            );
+          })}
         </nav>
       </aside>
     </>

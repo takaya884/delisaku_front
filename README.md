@@ -117,7 +117,7 @@ npx playwright install chromium
 npm run dev
 ```
 
-ブラウザで http://localhost:5173 を開きます。
+ブラウザで http://localhost:3000 を開きます。
 
 ### Storybookの起動
 
