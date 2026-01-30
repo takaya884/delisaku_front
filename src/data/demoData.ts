@@ -1,0 +1,98 @@
+import { InventoryItem, Recipe } from '../types';
+
+export const demoInventoryItems: InventoryItem[] = [
+  {
+    id: '1',
+    name: 'トマト',
+    category: '野菜',
+    quantity: 50,
+    unit: 'kg',
+    minQuantity: 10,
+    lastUpdated: '2026-01-30',
+    expiryDate: '2026-02-05',
+  },
+  {
+    id: '2',
+    name: '玉ねぎ',
+    category: '野菜',
+    quantity: 30,
+    unit: 'kg',
+    minQuantity: 15,
+    lastUpdated: '2026-01-30',
+    expiryDate: '2026-02-10',
+  },
+  {
+    id: '3',
+    name: '牛肉',
+    category: '肉類',
+    quantity: 8,
+    unit: 'kg',
+    minQuantity: 10,
+    lastUpdated: '2026-01-30',
+    expiryDate: '2026-02-02',
+  },
+  {
+    id: '4',
+    name: 'オリーブオイル',
+    category: '調味料',
+    quantity: 5,
+    unit: 'L',
+    minQuantity: 2,
+    lastUpdated: '2026-01-30',
+  },
+  {
+    id: '5',
+    name: 'パスタ',
+    category: '乾物',
+    quantity: 25,
+    unit: 'kg',
+    minQuantity: 10,
+    lastUpdated: '2026-01-30',
+  },
+];
+
+export const demoRecipes: Recipe[] = [
+  {
+    id: '1',
+    name: 'トマトパスタ',
+    description: '新鮮なトマトを使ったシンプルなパスタ',
+    category: 'パスタ',
+    servings: 4,
+    prepTime: 10,
+    cookTime: 20,
+    ingredients: [
+      { itemId: '1', itemName: 'トマト', quantity: 0.5, unit: 'kg' },
+      { itemId: '2', itemName: '玉ねぎ', quantity: 0.2, unit: 'kg' },
+      { itemId: '4', itemName: 'オリーブオイル', quantity: 0.05, unit: 'L' },
+      { itemId: '5', itemName: 'パスタ', quantity: 0.4, unit: 'kg' },
+    ],
+    instructions: [
+      'パスタを茹でる',
+      '玉ねぎをみじん切りにする',
+      'オリーブオイルで玉ねぎを炒める',
+      'トマトを加えて煮込む',
+      '茹でたパスタと和える',
+    ],
+  },
+  {
+    id: '2',
+    name: 'ビーフシチュー',
+    description: '濃厚な牛肉のシチュー',
+    category: '煮込み料理',
+    servings: 6,
+    prepTime: 20,
+    cookTime: 120,
+    ingredients: [
+      { itemId: '3', itemName: '牛肉', quantity: 1, unit: 'kg' },
+      { itemId: '2', itemName: '玉ねぎ', quantity: 0.5, unit: 'kg' },
+      { itemId: '1', itemName: 'トマト', quantity: 0.3, unit: 'kg' },
+    ],
+    instructions: [
+      '牛肉を一口大に切る',
+      '玉ねぎを薄切りにする',
+      '牛肉を焼き色がつくまで炒める',
+      '玉ねぎとトマトを加える',
+      '弱火で2時間煮込む',
+    ],
+  },
+];
