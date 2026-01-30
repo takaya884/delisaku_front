@@ -1,0 +1,122 @@
+.ingredient-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.page-description {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.success-message {
+  background: var(--success-color);
+  color: white;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registered-list {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.registered-list h3 {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.registered-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.registered-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.registered-list li:last-child {
+  border-bottom: none;
+}
+
+.ing-code {
+  font-family: monospace;
+  background: var(--background-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+}
+
+.ing-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.ing-price {
+  color: var(--text-secondary);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 576px) {
+  .page-header {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .registered-list {
+    padding: var(--spacing-md);
+  }
+  
+  .registered-list li {
+    flex-wrap: wrap;
+  }
+  
+  .ing-code {
+    order: 1;
+  }
+  
+  .ing-price {
+    order: 2;
+  }
+  
+  .ing-name {
+    order: 3;
+    width: 100%;
+    margin-top: var(--spacing-xs);
+  }
+}
