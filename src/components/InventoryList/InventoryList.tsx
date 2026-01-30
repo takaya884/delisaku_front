@@ -11,7 +11,7 @@ interface InventoryListProps {
 export const InventoryList: React.FC<InventoryListProps> = ({ items, onEdit }) => {
   if (items.length === 0) {
     return (
-      <div className="empty-state">
+      <div className="empty-state" role="status" aria-live="polite">
         <p>在庫アイテムがありません</p>
       </div>
     );

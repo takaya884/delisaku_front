@@ -1,10 +1,11 @@
 import React from 'react';
 import { InventoryList } from '../../components/InventoryList/InventoryList';
 import { demoInventoryItems } from '../../data/demoData';
+import { InventoryItem } from '../../types';
 import './InventoryPage.css';
 
 export const InventoryPage: React.FC = () => {
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: InventoryItem) => {
     console.log('Edit item:', item);
   };
 

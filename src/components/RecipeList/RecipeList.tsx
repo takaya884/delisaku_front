@@ -11,7 +11,7 @@ interface RecipeListProps {
 export const RecipeList: React.FC<RecipeListProps> = ({ recipes, onView }) => {
   if (recipes.length === 0) {
     return (
-      <div className="empty-state">
+      <div className="empty-state" role="status" aria-live="polite">
         <p>レシピがありません</p>
       </div>
     );
