@@ -3,6 +3,8 @@ import { IngredientForm } from '../../components/IngredientForm';
 import { Ingredient } from '../../types';
 import './IngredientPage.css';
 
+type ViewMode = 'card' | 'list';
+
 interface IngredientPageProps {
   onSave?: (ingredient: Ingredient) => void;
 }
@@ -11,6 +13,7 @@ export const IngredientPage: React.FC<IngredientPageProps> = ({ onSave }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [registeredIngredients, setRegisteredIngredients] = useState<Ingredient[]>([]);
+  const [viewMode, setViewMode] = useState<ViewMode>('card');
   const timeoutRef = useRef<number | null>(null);
 
   // コンポーネントアンマウント時にタイムアウトをクリア
@@ -71,16 +74,74 @@ export const IngredientPage: React.FC<IngredientPageProps> = ({ onSave }) => {
 
       {registeredIngredients.length > 0 && (
         <div className="registered-list">
-          <h3>登録済み食材 ({registeredIngredients.length}件)</h3>
-          <ul>
-            {registeredIngredients.map((ing) => (
-              <li key={ing.id}>
-                <span className="ing-code">{ing.code}</span>
-                <span className="ing-name">{ing.name}</span>
-                <span className="ing-price">¥{ing.purchasePrice.toLocaleString()}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="registered-header">
+            <h3>登録済み食材 ({registeredIngredients.length}件)</h3>
+            <div className="view-toggle">
+              <button
+                type="button"
+                className={`toggle-btn ${viewMode === 'card' ? 'active' : ''}`}
+                onClick={() => setViewMode('card')}
+                aria-label="カード表示"
+              >
+                ▦ カード
+              </button>
+              <button
+                type="button"
+                className={`toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
+                onClick={() => setViewMode('list')}
+                aria-label="一覧表示"
+              >
+                ☰ 一覧
+              </button>
+            </div>
+          </div>
+
+          {viewMode === 'card' ? (
+            <div className="ingredient-cards">
+              {registeredIngredients.map((ing) => (
+                <div key={ing.id} className="ingredient-card">
+                  {ing.imageUrl ? (
+                    <img
+                      src={ing.imageUrl}
+                      alt={ing.name}
+                      className="card-image"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <div className="card-image-placeholder">🥬</div>
+                  )}
+                  <div className="card-content">
+                    <span className="ing-code">{ing.code}</span>
+                    <span className="ing-name">{ing.name}</span>
+                    <span className="ing-price">¥{ing.purchasePrice.toLocaleString()}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ul className="ingredient-list-view">
+              {registeredIngredients.map((ing) => (
+                <li key={ing.id}>
+                  {ing.imageUrl && (
+                    <img
+                      src={ing.imageUrl}
+                      alt={ing.name}
+                      className="list-thumbnail"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
+                  {!ing.imageUrl && <span className="list-thumbnail-placeholder">🥬</span>}
+                  <span className="ing-code">{ing.code}</span>
+                  <span className="ing-name">{ing.name}</span>
+                  <span className="ing-price">¥{ing.purchasePrice.toLocaleString()}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

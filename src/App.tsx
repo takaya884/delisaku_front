@@ -3,9 +3,10 @@ import { Layout } from './components/Layout';
 import { InventoryPage } from './pages/InventoryPage/InventoryPage';
 import { RecipePage } from './pages/RecipePage/RecipePage';
 import { IngredientPage } from './pages/IngredientPage';
+import { DataInputPage } from './pages/DataInputPage';
 import './styles/global.css';
 
-type PageType = 'inventory' | 'recipes' | 'ingredients';
+type PageType = 'inventory' | 'recipes' | 'ingredients' | 'data-input';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('inventory');
@@ -14,7 +15,7 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1) as PageType;
-      if (['inventory', 'recipes', 'ingredients'].includes(hash)) {
+      if (['inventory', 'recipes', 'ingredients', 'data-input'].includes(hash)) {
         setCurrentPage(hash);
       }
     };
@@ -32,6 +33,8 @@ function App() {
         return <RecipePage />;
       case 'ingredients':
         return <IngredientPage />;
+      case 'data-input':
+        return <DataInputPage />;
       default:
         return <InventoryPage />;
     }

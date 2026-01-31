@@ -12,6 +12,7 @@ const sidebarItems: SidebarItem[] = [
   { id: 'inventory', label: '在庫管理', href: '#inventory', icon: '📦' },
   { id: 'recipes', label: 'レシピ', href: '#recipes', icon: '🍳' },
   { id: 'ingredients', label: '食材登録', href: '#ingredients', icon: '🥬' },
+  { id: 'data-input', label: 'データ入力', href: '#data-input', icon: '📲' },
 ];
 
 export const Layout: React.FC<LayoutProps> = ({
