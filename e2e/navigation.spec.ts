@@ -9,6 +9,9 @@ test.describe('ナビゲーション', () => {
   test('サイドバーから食材登録画面に遷移', async ({ page }) => {
     await page.goto('/');
     
+    // 食材メニューを展開
+    await page.click('.sidebar-group-header:has-text("食材")');
+    
     // サイドバーの食材登録リンクをクリック
     await page.click('a[href="#ingredients"]');
     

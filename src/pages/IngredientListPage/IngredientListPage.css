@@ -1,0 +1,139 @@
+.ingredient-list-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.page-description {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 検索セクション */
+.search-section {
+  background: var(--surface-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  max-width: 400px;
+}
+
+.search-field label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.search-field input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.search-field input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* テーブル */
+.ingredient-table-container {
+  background: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.ingredient-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ingredient-table th,
+.ingredient-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ingredient-table th {
+  background: var(--background-color);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.ingredient-table tbody tr:hover {
+  background: var(--background-color);
+}
+
+.ingredient-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.code-cell {
+  font-family: monospace;
+  background: var(--background-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+}
+
+.price-cell {
+  color: var(--text-secondary);
+}
+
+.no-data {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--spacing-xl) !important;
+}
+
+/* 結果件数 */
+.result-count {
+  margin-top: var(--spacing-md);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .ingredient-table-container {
+    overflow-x: auto;
+  }
+
+  .ingredient-table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-header {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .search-section {
+    padding: var(--spacing-md);
+  }
+}
