@@ -41,7 +41,7 @@
 }
 
 .sidebar-toggle:hover {
-  background: #E64A19;
+  background: var(--accent-color-dark);
 }
 
 .toggle-icon {

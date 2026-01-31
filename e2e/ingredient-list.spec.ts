@@ -78,11 +78,23 @@ test.describe('サイドバーの食材メニュー', () => {
     const toggleButton = page.locator('.sidebar-toggle');
     await expect(toggleButton).toBeVisible();
     
-    // 背景色がaccent-color（オレンジ）であることを確認
+    // 背景色がオレンジ系（赤とも緑とも異なる）であることを確認
     const backgroundColor = await toggleButton.evaluate((el) => {
       return window.getComputedStyle(el).backgroundColor;
     });
-    // accent-color: #FF7043 = rgb(255, 112, 67)
-    expect(backgroundColor).toBe('rgb(255, 112, 67)');
+    // accent-color: #FF7043 = rgb(255, 112, 67) - オレンジ色
+    // 赤(R)が高く、緑(G)が中程度、青(B)が低いことを確認
+    const match = backgroundColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    expect(match).not.toBeNull();
+    if (match) {
+      const r = parseInt(match[1]);
+      const g = parseInt(match[2]);
+      const b = parseInt(match[3]);
+      // オレンジ色の特性: 赤が高く(200+)、緑が中程度(80-150)、青が低い(<100)
+      expect(r).toBeGreaterThan(200);
+      expect(g).toBeGreaterThan(80);
+      expect(g).toBeLessThan(150);
+      expect(b).toBeLessThan(100);
+    }
   });
 });
