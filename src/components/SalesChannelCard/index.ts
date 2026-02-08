@@ -1,0 +1,1 @@
+export { SalesChannelCard } from './SalesChannelCard';

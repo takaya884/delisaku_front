@@ -1,0 +1,153 @@
+.sales-channel-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sales-channel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sales-channel-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sales-channel-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.sales-channel-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.sales-channel-description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.sales-channel-method {
+  margin-bottom: 12px;
+}
+
+.method-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sales-channel-api {
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.sales-channel-api strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #555;
+  font-size: 12px;
+}
+
+.sales-channel-api code {
+  display: block;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 3px;
+  color: #1976d2;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.sales-channel-doc {
+  margin-bottom: 8px;
+}
+
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.doc-link:hover {
+  background-color: #e3f2fd;
+  text-decoration: underline;
+}
+
+.sales-channel-notes {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.sales-channel-notes details {
+  font-size: 13px;
+}
+
+.sales-channel-notes summary {
+  cursor: pointer;
+  color: #1976d2;
+  font-weight: 500;
+  user-select: none;
+  padding: 4px 0;
+}
+
+.sales-channel-notes summary:hover {
+  text-decoration: underline;
+}
+
+.sales-channel-notes p {
+  margin: 8px 0 0 0;
+  color: #666;
+  line-height: 1.6;
+  padding: 8px;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border-left: 3px solid #1976d2;
+}
+
+@media (max-width: 768px) {
+  .sales-channel-card {
+    padding: 16px;
+  }
+
+  .sales-channel-icon {
+    font-size: 28px;
+  }
+
+  .sales-channel-name {
+    font-size: 15px;
+  }
+
+  .sales-channel-description {
+    font-size: 13px;
+  }
+}

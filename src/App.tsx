@@ -5,9 +5,10 @@ import { RecipePage } from './pages/RecipePage/RecipePage';
 import { IngredientPage } from './pages/IngredientPage';
 import { IngredientListPage } from './pages/IngredientListPage';
 import { DataInputPage } from './pages/DataInputPage';
+import { SalesPage } from './pages/SalesPage';
 import './styles/global.css';
 
-type PageType = 'inventory' | 'recipes' | 'ingredients' | 'ingredient-list' | 'data-input';
+type PageType = 'inventory' | 'recipes' | 'ingredients' | 'ingredient-list' | 'data-input' | 'sales';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('inventory');
@@ -16,7 +17,7 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1) as PageType;
-      if (['inventory', 'recipes', 'ingredients', 'ingredient-list', 'data-input'].includes(hash)) {
+      if (['inventory', 'recipes', 'ingredients', 'ingredient-list', 'data-input', 'sales'].includes(hash)) {
         setCurrentPage(hash);
       }
     };
@@ -38,6 +39,8 @@ function App() {
         return <IngredientListPage />;
       case 'data-input':
         return <DataInputPage />;
+      case 'sales':
+        return <SalesPage />;
       default:
         return <InventoryPage />;
     }
