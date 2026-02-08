@@ -20,6 +20,7 @@ const sidebarItems: SidebarItem[] = [
       { id: 'ingredient-list', label: '食材一覧', href: '#ingredient-list' },
     ]
   },
+  { id: 'sales', label: '日次売上確認', href: '#sales', icon: '💰' },
   { id: 'data-input', label: 'データ入力', href: '#data-input', icon: '📲' },
 ];
 
